@@ -50,6 +50,10 @@ $(function () {
       url: "/employee/employeeLogin",
       data: $('#form').serialize(),
       dataType: "json",
+      beforeSend: function () {
+        NProgress.configure({ showSpinner: false });
+        NProgress.start();
+      },
       success: function (response) {
         // console.log(response);
         if (response.success) {
@@ -62,12 +66,19 @@ $(function () {
         if (response.error === 1001) {
           $('#form').data('bootstrapValidator').updateStatus('password', 'INVALID', 'callback');
         }
+      },
+      complete: function () {
+        // NProgress.done();
       }
     });
+
   })
 // 重置时重置内容和状态
   $('[type="reset"]').on('click',function () {
     $('#form').data('bootstrapValidator').resetForm();
+    NProgress.done();
   })
+
+
 
 });
