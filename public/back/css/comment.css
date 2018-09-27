@@ -37,6 +37,10 @@ a:active {
   left: 0;
   background-color: #222D32;
   z-index: 999;
+  transition: all 1s;
+}
+.lt_aside.hiddeAside {
+  left: -180px;
 }
 .lt_aside .brand {
   width: 100%;
@@ -87,7 +91,11 @@ a:active {
 .lt_main {
   padding-left: 180px;  
   padding-top: 50px;
+  transition: all 1s;
   /* height: 2000px; */
+}
+.lt_main.hiddeMain {
+  padding-left: 0;
 }
 .lt_main .lt_topbar {
   padding-left: 180px;
@@ -98,6 +106,10 @@ a:active {
   left: 0;
   top: 0;
   z-index: 666;
+  transition: all 1s;
+}
+.lt_topbar.hiddeTopbar {
+  padding-left: 0;
 }
 .lt_main .lt_topbar a {
   width: 50px;
@@ -114,4 +126,8 @@ a:active {
 .container-fluid .right{
   width: 48%;
   height: 400px;
+}
+/* 模态框提示颜色 */
+.colorModal {
+  color: #A94442;
 }

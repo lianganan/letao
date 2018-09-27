@@ -64,7 +64,12 @@ $(function () {
         }
       }
     });
+  })
 
+
+  // 重置表单验证
+  $('[type = "reset"]').on('click',function () {
+    $('#form').data('bootstrapValidator').resetForm();
   })
 
 });
