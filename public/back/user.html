@@ -88,22 +88,8 @@
       </table>
       <!-- 分页 -->
       <div class="text-right">
-        <ul class="pagination">
-          <li>
-            <a href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li class="active"><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-          <li>
-            <a href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
+        <ul id="pagination">
+         
         </ul>
       </div>
     </div>
@@ -130,13 +116,14 @@
 <script src="./lib/jquery/jquery.min.js"></script>
 <script src="./lib/artTemplate/template-web.js"></script>
 <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
 <script src="./lib/nprogress/nprogress.js"></script>
 <script src="./js/comment.js"></script>
 <script src="./js/user.js"></script>
 <script type="text/template" id="tmp">
   {{ each rows v i }}
     <tr>
-      <td>{{i + 1}}</td>
+      <td>{{i + 1 + (page-1)*size}}</td>
       <td>{{v.username}}</td>
       <td>{{v.mobile}}</td>
       <td>{{v.isDelete === 1 ? "正常" : "禁用"}}</td>
