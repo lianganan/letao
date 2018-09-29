@@ -1,24 +1,27 @@
-$(function() {
+$(function () {
   function ready(page, pageSize) {
     $.ajax({
       type: "get",
       url: "/user/queryUser",
-      data: { page: page || 1, pageSize: pageSize || 5 },
+      data: {
+        page: page || 1,
+        pageSize: pageSize || 5
+      },
       dataType: "json",
-      success: function(response) {
+      success: function (response) {
         console.log(response);
         totalPages = Math.ceil(response.total / response.size);
         // console.log(totalPages);
+        $("tbody").html(template("tmp", response));
         // 分页
         $("#pagination").bootstrapPaginator({
           bootstrapMajorVersion: 3,
           totalPages: Math.ceil(response.total / response.size),
           currentPage: response.page,
-          onPageClicked: function(e, o, t, page) {
+          onPageClicked: function (e, o, t, page) {
             ready(page);
           }
         });
-        $("tbody").html(template("tmp", response));
       }
     });
   }
@@ -26,7 +29,7 @@ $(function() {
   var id;
   var isDelete;
   var currentPage;
-  $("tbody").on("click", "button", function() {
+  $("tbody").on("click", "button", function () {
     $("#userModal").modal("show");
     id = $(this)
       .parent()
@@ -37,13 +40,16 @@ $(function() {
       .data("page");
     console.log(currentPage);
   });
-  $(".btn-user").on("click", function() {
+  $(".btn-user").on("click", function () {
     $.ajax({
       type: "post",
       url: "/user/updateUser",
-      data: { id: id, isDelete: isDelete },
+      data: {
+        id: id,
+        isDelete: isDelete
+      },
       dataType: "json",
-      success: function(response) {
+      success: function (response) {
         $("#userModal").modal("hide");
         ready(currentPage);
       }
