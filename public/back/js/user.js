@@ -1,5 +1,5 @@
 $(function() {
-  function ready(page,pageSize) {
+  function ready(page, pageSize) {
     $.ajax({
       type: "get",
       url: "/user/queryUser",
@@ -23,4 +23,30 @@ $(function() {
     });
   }
   ready();
+  var id;
+  var isDelete;
+  var currentPage;
+  $("tbody").on("click", "button", function() {
+    $("#userModal").modal("show");
+    id = $(this)
+      .parent()
+      .data("id");
+    isDelete = $(this).hasClass("btn-success") ? 1 : 0;
+    currentPage = $(this)
+      .parent()
+      .data("page");
+    console.log(currentPage);
+  });
+  $(".btn-user").on("click", function() {
+    $.ajax({
+      type: "post",
+      url: "/user/updateUser",
+      data: { id: id, isDelete: isDelete },
+      dataType: "json",
+      success: function(response) {
+        $("#userModal").modal("hide");
+        ready(currentPage);
+      }
+    });
+  });
 });
