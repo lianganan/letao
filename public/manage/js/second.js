@@ -2,7 +2,7 @@
  * Created by Jepson on 2018/4/7.
  */
 
-$(function() {
+$(function () {
 
   // 当前页
   var currentPage = 1;
@@ -11,6 +11,7 @@ $(function() {
 
   // 1. 一进入页面进行渲染
   render();
+
   function render() {
     $.ajax({
       url: "/category/querySecondCategoryPaging",
@@ -19,9 +20,9 @@ $(function() {
         page: currentPage,
         pageSize: pageSize
       },
-      success: function( info ) {
-        var htmlStr = template( "secondTpl", info );
-        $('.lt_content tbody').html( htmlStr );
+      success: function (info) {
+        var htmlStr = template("secondTpl", info);
+        $('.lt_content tbody').html(htmlStr);
 
         // 进行分页初始化
         $('#paginator').bootstrapPaginator({
@@ -30,9 +31,9 @@ $(function() {
           // 当前页
           currentPage: info.page,
           // 总页数
-          totalPages: Math.ceil( info.total / info.size ),
+          totalPages: Math.ceil(info.total / info.size),
           // 注册每个页码的点击事件
-          onPageClicked: function( a, b, c, page ) {
+          onPageClicked: function (a, b, c, page) {
             // 重新渲染页面
             currentPage = page;
             render();
@@ -43,7 +44,7 @@ $(function() {
   };
 
   // 2. 点击添加分类按钮, 显示添加模态框
-  $('#addBtn').click(function() {
+  $('#addBtn').click(function () {
     $('#addModal').modal("show");
 
     // 请求一级分类名称, 渲染下拉菜单
@@ -54,28 +55,28 @@ $(function() {
         page: 1,
         pageSize: 100
       },
-      success: function( info ) {
-        console.log( info );
+      success: function (info) {
+        console.log(info);
         // 将模板和数据相结合, 渲染到下拉菜单中
-        var htmlStr = template( "dropdownTpl", info );
-        $('.dropdown-menu').html( htmlStr );
+        var htmlStr = template("dropdownTpl", info);
+        $('.dropdown-menu').html(htmlStr);
       }
     })
   });
 
 
   // 3. 通过注册委托事件, 给 a 添加点击事件
-  $('.dropdown-menu').on("click", "a", function() {
+  $('.dropdown-menu').on("click", "a", function () {
     // 选中的文本
     var txt = $(this).text();
     // 拿到 categoryId
     var id = $(this).data("id");
 
     // 修改文本内容
-    $('#dropdownText').text( txt );
+    $('#dropdownText').text(txt);
 
     // 将选中的 id 设置到 input 表单元素中
-    $('[name="categoryId"]').val( id );
+    $('[name="categoryId"]').val(id);
 
     // 需要将校验状态置成 VALID
     // 参数1: 字段
@@ -89,14 +90,14 @@ $(function() {
     // 指定数据类型为 json
     dataType: "json",
     // done, 当图片上传完成, 响应回来时调用
-    done: function( e, data ) {
-      console.log( data )
+    done: function (e, data) {
+      console.log(data)
       // 获取上传成功的图片地址
       var picAddr = data.result.picAddr;
       // 设置图片地址
       $('#imgBox img').attr("src", picAddr);
       // 将图片地址存在隐藏域中
-      $('[name="brandLogo"]').val( picAddr );
+      $('[name="brandLogo"]').val(picAddr);
 
       // 重置校验状态
       $('#form').data("bootstrapValidator").updateStatus("brandLogo", "VALID")
@@ -150,7 +151,7 @@ $(function() {
 
 
   // 6. 注册校验成功事件, 通过 ajax 进行添加
-  $("#form").on("success.form.bv", function( e ) {
+  $("#form").on("success.form.bv", function (e) {
     // 阻止默认的提交
     e.preventDefault();
 
@@ -158,13 +159,13 @@ $(function() {
       url: "/category/addSecondCategory",
       type: "post",
       data: $('#form').serialize(),
-      success: function( info ) {
-        console.log( info )
+      success: function (info) {
+        console.log(info)
 
         // 关闭模态框
         $('#addModal').modal("hide");
         // 重置表单里面的内容和校验状态
-        $('#form').data("bootstrapValidator").resetForm( true );
+        $('#form').data("bootstrapValidator").resetForm(true);
 
         // 重新渲染第一页
         currentPage = 1;
