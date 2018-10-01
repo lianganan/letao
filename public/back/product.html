@@ -80,17 +80,6 @@
           </thead>
           <tbody>
             <!-- 模板渲染 -->
-            <tr>
-              <td>1</td>
-              <td>【莹恋】MIZUNO美津浓V1GA159002乒乓球鞋男鞋女鞋室内综合训练鞋</td>
-              <td>描述123123</td>
-              <td>44</td>
-              <td>35-56</td>
-              <td>已上架</td>
-              <td>
-                <button class="btn btn-danger">下架</button>
-              </td>
-            </tr>
           </tbody>
         </table>
         <div class="text-right">
@@ -121,9 +110,89 @@
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
+  <!-- 添加分类模态框 -->
+  <div class="modal fade bs-example-modal-sm" id="categoryModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+          <h4 class="modal-title">温馨提示</h4>
+        </div>
+        <div class="modal-body">
+          <form id="form">
+            <div class="form-group">
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                  <span class="dropdownTxt" id="caretTxt">请选择二级分类</span>
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <!-- 一级分类模板渲染 -->
+                </ul>
+                <input type="hidden" name="categoryId" class="categoryId" value="">
+                <input type="hidden" name="hot" value="1">
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" name="brandName" class="form-control" placeholder="请输入商品名称">
+            </div>
+            <div class="form-group">
+              <textarea type="text" name="brandName" class="form-control" placeholder="请输入商品描述" style="resize: none"></textarea>
+            </div>
+            <div class="form-group">
+              <input type="text" name="brandName" class="form-control" placeholder="请输入商品库存">
+            </div>
+            <div class="form-group">
+              <input type="text" name="brandName" class="form-control" placeholder="请输入商品尺码">
+            </div>
+            <div class="form-group">
+              <input type="text" name="brandName" class="form-control" placeholder="请输入商品原价">
+            </div>
+            <div class="form-group">
+              <input type="text" name="brandName" class="form-control" placeholder="请输入商品现价">
+            </div>
+            <div class="form-group">
+              <label for="fileupload" class="btn btn-default filebtn">上传图片</label>
+              <input id="fileupload" type="file" name="pic1" data-url="/category/addSecondCategoryPic" style="display:none">
+            </div>
+            <div class="form-group">
+              <img class="img" src="./images/none.png" width="100" alt="">
+              <input type="hidden" name="brandLogo" value="">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="submit" class="btn btn-primary" form="form">添加</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 </body>
 <script src="./lib/jquery/jquery.min.js"></script>
+<script src="./lib/artTemplate/template-web.js"></script>
 <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="./lib/nprogress/nprogress.js"></script>
 <script src="./js/comment.js"></script>
+<script src="./js/product.js"></script>
+<script type="text/template" id="tmp">
+  {{each rows v i}}
+    <tr>
+      <td>{{i+1 + (page-1)*size}}</td>
+      <td>{{v.proName}}</td>
+      <td>{{v.proDesc}}</td>
+      <td>{{v.num}}</td>
+      <td>{{v.size}}</td>
+      <td>{{v.statu === 1 ? "已上架" : "已下架"}}</td>
+      <td>
+        {{if v.statu === 1 }}
+          <button class="btn btn-danger">下架</button>
+        {{/if}}
+        {{if v.statu === 0}}
+          <button class="btn btn-primary">上架</button>
+        {{/if}}
+      </td>
+    </tr>
+  {{/each}}
+</script>
 </html>
