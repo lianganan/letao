@@ -62,9 +62,46 @@
     <div class="container-fluid">
       <ol class="breadcrumb">
         <li><a href="index.html">管理系统</a></li>
-        <li class="active">用户管理</li>
+        <li class="active">商品管理</li>
       </ol>
+      <div class="lt_content">
+        <button class="btn btn-default mb_20">添加分类</button>
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th width="10%">序号</th>
+              <th width="25%">商品名称</th>
+              <th width="25%">商品描述</th>
+              <th width="10%">商品库存</th>
+              <th width="10%">商品尺寸</th>
+              <th width="10%">商品状态</th>
+              <th width="10%">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 模板渲染 -->
+            <tr>
+              <td>1</td>
+              <td>【莹恋】MIZUNO美津浓V1GA159002乒乓球鞋男鞋女鞋室内综合训练鞋</td>
+              <td>描述123123</td>
+              <td>44</td>
+              <td>35-56</td>
+              <td>已上架</td>
+              <td>
+                <button class="btn btn-danger">下架</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="text-right">
+          <ul id="pagination">
+            <!-- 分页 -->
+          </ul>
+        </div>
+      </div>
     </div>
+  </div>
+  </div>
   </div>
   <!-- 模态框 -->
   <div class="modal fade bs-example-modal-sm" id="loginoutModal">
@@ -88,8 +125,5 @@
 <script src="./lib/jquery/jquery.min.js"></script>
 <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="./lib/nprogress/nprogress.js"></script>
-<script src="./lib/echarts/echarts.min.js"></script>
 <script src="./js/comment.js"></script>
-<script src="./js/index.js"></script>
-
 </html>
