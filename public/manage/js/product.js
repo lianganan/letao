@@ -3,7 +3,7 @@
  */
 
 
-$(function() {
+$(function () {
 
   var currentPage = 1; // 当前页
   var pageSize = 2; // 一页多少条
@@ -20,11 +20,11 @@ $(function() {
         page: currentPage,
         pageSize: pageSize
       },
-      success: function( info ) {
+      success: function (info) {
         console.log(info);
         // 将模板与数据对象相结合, 渲染到页面中
-        var htmlStr = template( "productTpl", info );
-        $('.lt_content tbody').html( htmlStr );
+        var htmlStr = template("productTpl", info);
+        $('.lt_content tbody').html(htmlStr);
 
         // 进行分页初始化
         $('#paginator').bootstrapPaginator({
@@ -33,9 +33,9 @@ $(function() {
           // 当前页
           currentPage: info.page,
           // 总页数
-          totalPages: Math.ceil(  info.total / info.size ),
+          totalPages: Math.ceil(info.total / info.size),
           // 给下面的页码添加点击事件
-          onPageClicked: function( a, b, c, page ) {
+          onPageClicked: function (a, b, c, page) {
             currentPage = page;
             render();
           },
@@ -43,11 +43,11 @@ $(function() {
           size: "normal",
           // 配置每个按键的文字
           // 每个按钮, 都会调用一次这个方法, 他的返回值, 就是按钮的文本内容
-          itemTexts: function( type, page, current ) {
+          itemTexts: function (type, page, current) {
             // first 首页 last 尾页, prev 上一页, next 下一页, page 普通页码
             // page 是当前按钮指向第几页
             // current 是指当前是第几页 (相对于整个分页来说的)
-            switch( type ) {
+            switch (type) {
               case "first":
                 return "首页";
               case "last":
@@ -61,8 +61,8 @@ $(function() {
             }
           },
           // 配置提示框
-          tooltipTitles: function( type, page, current) {
-            switch( type ) {
+          tooltipTitles: function (type, page, current) {
+            switch (type) {
               case "first":
                 return "首页";
               case "last":
@@ -84,7 +84,7 @@ $(function() {
 
 
   // 2. 点击添加按钮, 显示添加模态框
-  $('#addBtn').click(function() {
+  $('#addBtn').click(function () {
     $('#addModal').modal("show");
 
 
@@ -96,10 +96,10 @@ $(function() {
         page: 1,
         pageSize: 100
       },
-      success: function( info ) {
+      success: function (info) {
         console.log(info);
-        var htmlStr = template( "dropdownTpl", info );
-        $('.dropdown-menu').html( htmlStr );
+        var htmlStr = template("dropdownTpl", info);
+        $('.dropdown-menu').html(htmlStr);
 
         // 注意: 不要在事件处理函数中, 注册事件,
         //       会重复注册事件
@@ -110,8 +110,8 @@ $(function() {
 
 
   // 3. 注册事件委托, 给 a 注册点击事件
-  $('.dropdown-menu').on( "click", "a", function() {
-    console.log( "呵呵" );
+  $('.dropdown-menu').on("click", "a", function () {
+    console.log("呵呵");
     // 获取选择的文本内容
     var txt = $(this).text();
     // 获取存在自定义属性中的 id
@@ -119,7 +119,7 @@ $(function() {
     // 取的时候, 直接 $(this).data("id") 不需要加上 前面的 data-
     var id = $(this).data("id");
 
-    $('#dropdownText').text( txt );
+    $('#dropdownText').text(txt);
     // 设置隐藏域
     $('[name="brandId"]').val(id);
   });
@@ -130,31 +130,31 @@ $(function() {
     dataType: "json",
     // 上传完图片, 响应的回调函数配置
     // 每一张图片上传, 都会响应一次
-    done: function( e, data ) {
-      console.log( data );
+    done: function (e, data) {
+      console.log(data);
       // 获取图片地址对象
       var picObj = data.result;
       // 获取图片地址
       var picAddr = picObj.picAddr;
 
       // 新得到的图片对象, 应该推到数组的最前面    push pop shift unshift
-      picArr.unshift( picObj );
+      picArr.unshift(picObj);
       // 新的图片, 应该添加到 imgBox 最前面去
-      $('#imgBox').prepend('<img src="'+ picAddr +'" width="100">');
+      $('#imgBox').prepend('<img src="' + picAddr + '" width="100">');
 
       // 如果上传的图片个数大于 3个, 需要将最旧的那个(最后面的哪项), 要删除
-     if( picArr.length > 3 ) {
-       // 删除数组的最后一项
-       picArr.pop();
-       // 除了删除数组的最后一项, 还需要将页面中渲染的最后一张图片删除掉
-       // 通过 last-of-type 找到imgBox盒子中最后一个 img 类型的标签, 让他自杀
-       $("#imgBox img:last-of-type").remove();
-     }
+      if (picArr.length > 3) {
+        // 删除数组的最后一项
+        picArr.pop();
+        // 除了删除数组的最后一项, 还需要将页面中渲染的最后一张图片删除掉
+        // 通过 last-of-type 找到imgBox盒子中最后一个 img 类型的标签, 让他自杀
+        $("#imgBox img:last-of-type").remove();
+      }
 
 
       // 如果处理后, 图片数组的长度为 3, 说明已经选择了三张图片, 可以进行提交
       // 需要将表单 picStatus 的校验状态, 置成 VALID
-      if ( picArr.length === 3 ) {
+      if (picArr.length === 3) {
         $('#form').data("bootstrapValidator").updateStatus("picStatus", "VALID")
       }
 
@@ -260,7 +260,7 @@ $(function() {
   });
 
   // 6. 注册校验成功事件
-  $("#form").on("success.form.bv", function( e ) {
+  $("#form").on("success.form.bv", function (e) {
     // 阻止默认的提交
     e.preventDefault();
 
@@ -284,8 +284,8 @@ $(function() {
       url: "/product/addProduct",
       type: "post",
       data: params,
-      success: function( info ) {
-        console.log( info )
+      success: function (info) {
+        console.log(info)
         if (info.success) {
           // 关闭模态框
           $('#addModal').modal("hide");
