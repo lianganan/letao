@@ -2,29 +2,4 @@
   width: 33.33%;
   float: left;
 }
-.lt_main .lt_product {
-  padding: 10px;
-}
-.lt_main .lt_product li{
-  border: 1px solid #ccc;
-  width: 48%;
-  float: left;
-  text-align: center;
-  margin-bottom: 10px;
-}
-.lt_main .lt_product li:nth-child(odd) {
-  margin-right: 4%;
-}
-.lt_product li p {
-  margin-bottom: 10px;
-}
-.lt_product li .new {
-  color: red;
-}
-.lt_product li .old {
-  text-decoration: line-through;
-}
-.lt_product li button {
-  margin-bottom: 10px;
-}
 
