@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./lib/mui/css/mui.css">
+  <link rel="stylesheet" href="./lib/fa/css/font-awesome.css">
+  <link rel="stylesheet" href="./css/comment.css">
+  <link rel="stylesheet" href="./css/search.css">
+  <title>乐淘电商</title>
+</head>
+<body>
+<!-- 全屏容器 -->
+<div class="lt_container">
+  <!-- 头部 -->
+  <div class="lt_header">
+    <a href="index.html" class="icon_left">
+      <i class="fa fa-home"></i>
+    </a>
+    <h3>乐淘云购</h3>
+    <a href="search.html" class="icon_right">
+      <i class="fa fa-search"></i>
+    </a>
+  </div>
+  <!--主体部分-->
+  <div class="lt_main">
+    <!--搜索框-->
+    <div class="lt_search">
+      <input type="text" placeholder="请输入搜索关键字">
+      <button class="mui-btn mui-btn-primary">搜索</button>
+    </div>
+    <!--历史记录-->
+    <div class="lt_history">
+      <div class="title mui-clearfix">
+        <span class="mui-pull-left">搜索历史</span>
+        <span class="mui-pull-right clear-history">
+          <i class="fa fa-trash"></i>
+          清空记录
+        </span>
+      </div>
+      <div class="content">
+        <!--模板渲染-->
+      </div>
+    </div>
+  </div>
+  <!--尾部-->
+  <div class="lt_footer">
+    <ul class="clearfix">
+      <li>
+        <a href="#" class="current">
+          <i class="fa fa-home"></i>
+          <p>首页</p>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa fa-bars"></i>
+          <p>分类页</p>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa fa-shopping-cart"></i>
+          <p>购物车</p>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa fa-user"></i>
+          <p>用户中心</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<script src="./lib/zepto/zepto.min.js"></script>
+<script src="./lib/artTemplate/template-web.js"></script>
+<script src="./lib/mui/js/mui.js"></script>
+<script src="./js/search.js"></script>
+<script type="text/template" id="tmp">
+
+  <ul class="mui-clearfix">
+    {{ each arr v i}}
+    <li class="mui-clearfix">
+      <a href="#" class="mui-pull-left">{{v}}</a>
+      <i class="mui-pull-right mui-icon mui-icon-closeempty"></i>
+    </li>
+    {{/each}}
+  </ul>
+
+</script>
+</body>
+</html>
