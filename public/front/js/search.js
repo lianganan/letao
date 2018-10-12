@@ -34,10 +34,11 @@ $(function () {
 
   //  点击X删除其中一条数据
   $('.lt_history .content').on('click', '.content i', function () {
-    mui.confirm('你确定要清空历史记录吗？', '温馨提示！', ['取消', '确认'], function (e) {
+    var $this = $(this);
+    mui.confirm('你确定要删除历史记录吗？', '温馨提示！', ['取消', '确认'], function (e) {
       if (e.index === 1) {
         var arr = getHistory();
-        arr.splice($(this).data('index'), 1);
+        arr.splice($this.data('index'), 1);
         setlocalStorage(arr);
         reander();
       }
@@ -67,8 +68,8 @@ $(function () {
   });
 
   //  点击历史记录跳转
-  $('.lt_history .content').on('click', '.content li', function () {
-    var value = $(this).find('a').text();
+  $('.lt_history .content').on('click', '.content a', function () {
+    var value = $(this).text();
     var hrefStr = 'searchList.html?value=' + value;
     location.href = hrefStr;
   })
